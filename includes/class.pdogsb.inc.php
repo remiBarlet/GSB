@@ -41,7 +41,7 @@ class PdoGsb
     private static $serveur = 'mysql:host=localhost';
     private static $bdd = 'dbname=gsb_frais';
     private static $user = 'userGsb';
-    private static $mdp = 'secret';
+    private static $mdp = 'L2100fm$';
     private static $monPdo;
     private static $monPdoGsb = null;
 
@@ -101,7 +101,25 @@ class PdoGsb
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
         $requetePrepare->execute();
-        return $requetePrepare->fetch();
+        $result = $requetePrepare->fetch();
+        if (is_array($result)) {
+            $result['comptable'] = false; 
+        } else {
+            $requete2Prepare = PdoGsb::$monPdo->prepare(
+                'SELECT comptable.id AS id, comptable.nom AS nom, '
+                . 'comptable.prenom AS prenom '
+                . 'FROM comptable '
+                . 'WHERE comptable.login = :unLogin AND comptable.mdp = :unMdp'
+            );
+            $requete2Prepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+            $requete2Prepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+            $requete2Prepare->execute();
+            $result = $requete2Prepare->fetch();
+            if (is_array($result)) {
+                $result['comptable'] = true;
+            }
+        }
+        return $result;
     }
 
     /**

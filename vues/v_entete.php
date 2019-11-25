@@ -31,8 +31,16 @@
             <?php
             $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
             if ($estConnecte) {
+                if ($_SESSION['comptable']) {
+                    ?>
+                    <div class="header comptable">
+                        <?php
+                } else {
+                    ?>
+                    <div class="header">
+                        <?php
+                }
                 ?>
-            <div class="header">
                 <div class="row vertical-align">
                     <div class="col-md-4">
                         <h1>
