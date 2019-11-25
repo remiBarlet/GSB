@@ -3,40 +3,40 @@
 }
 
 .panel-comptable {
-    border-color: #ff6700;
+    border-color: #44475a;
   }
   .panel-comptable > .panel-heading {
     color: white;
-    background-color: #ff6700;
-    border-color: #ff6700;
+    background-color: #44475a;
+    border-color: #44475a;
   }
   .panel-comptable > .panel-heading + .panel-collapse > .panel-body {
-    border-top-color: #ff6700;
+    border-top-color: #44475a;
   }
   .panel-comptable > .panel-heading .badge {
     color: white;
-    background-color: #ff6700;
+    background-color: #44475a;
   }
   .panel-comptable > .panel-footer + .panel-collapse > .panel-body {
-    border-bottom-color: #ff6700;
+    border-bottom-color: #44475a;
   }
 
   .comptable a {
-    color: #ff6700;
+    color: #44475a;
   }
 
   .comptable a:hover, a:focus {
-      color: #ff4000;
+      color: #2f2c3a;
   }
 
   .comptable li > a:hover {
-      background-color: #fbecd5;
+      background-color: #e4e2ee;
   }
 
   .comptable li.active > a {
-      background-color: #ff6700;
+      background-color: #44475a;
   }
 
   .comptable li.active > a:hover {
-      background-color: #ff4000;
+      background-color: #2f2c3a;
   }
