@@ -40,3 +40,20 @@
   .comptable li.active > a:hover {
       background-color: #2f2c3a;
   }
+
+  /*Padding and margin*/
+  .p-t-1 {
+    padding-top: 1em;
+  }
+
+  .p-b-1 {
+    padding-bottom : 1em;
+  }
+
+  .p-l-1 {
+    padding-left: 1em;
+  }
+
+  .p-r-1 {
+    padding-right: 1em;
+  }

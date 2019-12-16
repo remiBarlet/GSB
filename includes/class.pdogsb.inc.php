@@ -1,7 +1,7 @@
 <?php
 /**
  * Classe d'accès aux données.
- *
+ *O
  * PHP Version 7
  *
  * @category  PPE
@@ -121,6 +121,24 @@ class PdoGsb
         }
         return $result;
     }
+
+    /**
+     * @return id, nom, prenom de la table VISITEUR sous la forme d'un tableau associatif
+     */
+    public function getListeVisiteurs()
+    {
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT visiteur.id AS id, '
+            . 'visiteur.prenom AS prenom, '
+            . 'visiteur.nom AS nom '
+            . 'FROM visiteur'
+        );
+        $requetePrepare->execute();
+        $result = $requetePrepare->fetchAll();
+        return $result;
+    }
+
+
 
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
@@ -421,7 +439,7 @@ class PdoGsb
     }
 
     /**
-     * Retourne les mois pour lesquel un visiteur a une fiche de frais
+     * Retourne les mois pour lesquels un visiteur a une fiche de frais
      *
      * @param String $idVisiteur ID du visiteur
      *
@@ -480,10 +498,63 @@ class PdoGsb
         $laLigne = $requetePrepare->fetch();
         return $laLigne;
     }
+    /**
+     * Modifie l'état des fiches jusqu'au mois en cours.
+     * idEtat passe de 'saisie en cours' à 'saisie cloturée'
+     * 
+     * @return null
+     */
+    public function clotureFiches()
+    {
+        $dateActuelle = date('d/m/Y');
+        @list($jour, $mois, $annee) = explode('/', $dateActuelle);
+        $ceMois = $annee . $mois;
+        $ceJour = $annee . '-' . $mois . '-' .$jour;
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+            'UPDATE fichefrais SET idetat = "CL", '
+            .'datemodif = :ceJour '
+            .'WHERE mois < :ceMois '
+            .'AND idetat = "CR" '
+        );
+        $requetePrepare->bindParam(':ceJour', $ceJour, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':ceMois', $ceMois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
+
+    /**
+     * Retourne les mois pour lesquels existent des fiches de frais à valider 
+     *
+     * @return un tableau associatif de clé un mois -aaaamm- et de valeurs
+     *         l'année et le mois correspondant
+     */
+    public function getLesMoisAValider()
+    {
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+            'SELECT fichefrais.mois AS mois FROM fichefrais '
+            . 'WHERE fichefrais.idetat = "CL" '
+            . 'GROUP BY fichefrais.mois '
+            . 'ORDER BY fichefrais.mois desc '
+        );
+        $requetePrepare->execute();
+        $lesMois = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $mois = $laLigne['mois'];
+            $numAnnee = substr($mois, 0, 4);
+            $numMois = substr($mois, 4, 2);
+            $lesMois[] = array(
+                'mois' => $mois,
+                'numAnnee' => $numAnnee,
+                'numMois' => $numMois
+            );
+        }
+        return $lesMois;
+    }
+
 
     /**
      * Modifie l'état et la date de modification d'une fiche de frais.
-     * Modifie le champ idEtat et met la date de modif à aujourd'hui.
+     * Modifie le champ idEtat et met la date de modif à aujourd'hui
      *
      * @param String $idVisiteur ID du visiteur
      * @param String $mois       Mois sous la forme aaaamm

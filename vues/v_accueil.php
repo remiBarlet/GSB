@@ -50,11 +50,11 @@
                     <?php
                     if ($_SESSION['comptable']) { 
                         ?> 
-                        <a href="index.php?uc=gererFrais&action=saisirFrais"
+                        <a href="index.php?uc=validerFrais&action=saisirVisiteurMois"
                             class="btn btn-success btn-lg" role="button">
                         <span class="glyphicon glyphicon-pencil"></span>
                         <br>Valider les fiches de frais</a>
-                        <a href="index.php?uc=etatFrais&action=selectionnerMois"
+                        <a href="index.php?uc=suivrePaiement&action="
                             class="btn btn-primary btn-lg" role="button">
                         <span class="glyphicon glyphicon-list-alt"></span>
                         <br>Suivre le paiement des fiches de frais</a>
