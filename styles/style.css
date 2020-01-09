@@ -41,6 +41,11 @@
       background-color: #2f2c3a;
   }
 
+  /*Colonne refuser*/
+  .refus {
+    width: 10%;
+  }
+
   /*Padding and margin*/
   .p-t-1 {
     padding-top: 1em;
@@ -56,4 +61,8 @@
 
   .p-r-1 {
     padding-right: 1em;
+  }
+
+  .p-r-2 {
+    padding-right: 2em;
   }

@@ -18,13 +18,16 @@
     <h3>Sélectionner un visiteur médical : </h3>
 </div>    
 <div class="row">
-    <form action="index.php?uc=validerFrais&action=validationFiches"
+    <form action="index.php?uc=validerFrais&action=afficherFichesSaisies"
               method="post" role="form">
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="lstVisiteurs" accesskey="n" class="p-t-1">Visiteur : </label>
-                    <select id="lstVisiteurs" name="lstVisiteurs" class="form-control">
+                    <label for="lstVisiteurs" accesskey="n" class="p-t-1">
+                        Visiteur : 
+                    </label>
+                    <select id="lstVisiteurs" name="lstVisiteurs" 
+                        class="form-control">
                         <?php
                         foreach ($lesVisiteurs as $unVisiteur) {
                             $prenom = $unVisiteur['prenom'];
@@ -56,12 +59,12 @@
                             if ($mois == $moisASelectionner) {
                                 ?>
                                 <option selected value="<?php echo $mois ?>">
-                                    <?php echo $numMois . '/' . $numAnnee ?> </option>
+                                    <?php echo $numMois . '/' . $numAnnee ?></option>
                                 <?php
                             } else {
                                 ?>
                                 <option value="<?php echo $mois ?>">
-                                    <?php echo $numMois . '/' . $numAnnee ?> </option>
+                                    <?php echo $numMois . '/' . $numAnnee ?></option>
                                 <?php
                             }
                         }
@@ -78,3 +81,5 @@
         </div>        
     </form>
 </div>
+<?php
+?>

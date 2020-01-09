@@ -220,6 +220,7 @@ function valideInfosFrais($dateFrais, $libelle, $montant)
     }
 }
 
+
 /**
  * Ajoute le libellé d'une erreur au tableau des erreurs
  *

@@ -237,6 +237,25 @@ class PdoGsb
     }
 
     /**
+     * Retourne le libelle d'un frais hors forfait
+     * 
+     * @param String $idFrais ID du frais dont on retourne le libelle
+     * 
+     * @return String libelle
+     */
+    public function getLibelle($idFrais) 
+    {
+        $requetePrepare = pdoGsb::$monPdo->prepare(
+            'SELECT libelle from lignefraishorsforfait '
+            . 'WHERE id = :uneID' 
+        );
+        $requetePrepare->bindParam(':uneID', $idFrais, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $result = $requetePrepare->fetch();
+        return $result['libelle'];
+    }
+
+    /**
      * Met à jour la table ligneFraisForfait
      * Met à jour la table ligneFraisForfait pour un visiteur et
      * un mois donné en enregistrant les nouveaux montants
@@ -269,6 +288,31 @@ class PdoGsb
     }
 
     /**
+     * Met à jour le libellé des frais hors forfait refusés 
+     * 
+     * @param String $idFraisRefus ID de la ligne de frais hors forfait à refuser
+     * 
+     * @return null
+     */
+    public function majFraisHorsForfait($nvLibelle, $idFraisRefus) 
+    {
+        //création du nouveau libelle: REFUSE + etc
+        $libelle = $nvLibelle . pdoGsb::getLibelle($idFraisRefus);
+        $libelle = substr($libelle, 0, 100);
+        $ceMois = getMois(date('d/m/Y'));
+        //MAJ
+        $requetePrepare = pdoGsb::$monPdo->prepare(
+            'UPDATE lignefraishorsforfait '
+            . 'SET libelle = :unLibelle , mois = :ceMois '
+            . 'WHERE lignefraishorsforfait.id = :uneID'
+        );
+        $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':ceMois', $ceMois, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':uneID', $idFraisRefus, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
+    /**
      * Met à jour le nombre de justificatifs de la table ficheFrais
      * pour le mois et le visiteur concerné
      *
@@ -280,7 +324,7 @@ class PdoGsb
      */
     public function majNbJustificatifs($idVisiteur, $mois, $nbJustificatifs)
     {
-        $requetePrepare = PdoGB::$monPdo->prepare(
+        $requetePrepare = PdoGSB::$monPdo->prepare(
             'UPDATE fichefrais '
             . 'SET nbjustificatifs = :unNbJustificatifs '
             . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
@@ -295,6 +339,9 @@ class PdoGsb
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
+
+
+
 
     /**
      * Teste si un visiteur possède une fiche de frais pour le mois passé en argument
@@ -551,6 +598,19 @@ class PdoGsb
         return $lesMois;
     }
 
+    /**
+     * Retourne un tableau des montants des frais forfaitisés
+     * 
+     * @return Array $montantsForfait Montants du forfait
+     */
+    public function getMontantsForfait()
+    {
+        $requetePrepare = pdoGsb::$monPdo->prepare(
+            'SELECT montant FROM fraisforfait'
+        );
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll();
+    }
 
     /**
      * Modifie l'état et la date de modification d'une fiche de frais.
@@ -562,17 +622,18 @@ class PdoGsb
      *
      * @return null
      */
-    public function majEtatFicheFrais($idVisiteur, $mois, $etat)
+    public function majEtatFicheFrais($idVisiteur, $mois, $etat, $montant)
     {
         $requetePrepare = PdoGSB::$monPdo->prepare(
-            'UPDATE ficheFrais '
-            . 'SET idetat = :unEtat, datemodif = now() '
+            'UPDATE fichefrais '
+            . 'SET idetat = :unEtat, datemodif = now() , montantvalide = :unMontant '
             . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
             . 'AND fichefrais.mois = :unMois'
         );
         $requetePrepare->bindParam(':unEtat', $etat, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMontant', $montant, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
 }
