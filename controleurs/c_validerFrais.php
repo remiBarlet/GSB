@@ -39,7 +39,7 @@ case 'saisirVisiteurMois':
     */
     $lesClesMois = array_keys($lesMois);
     $moisASelectionner = $lesClesMois[0];
-    include 'vues/v_validationListeVisiteurs.php';
+    include 'vues/v_listeVisiteursMois.php';
     break;
 
 
@@ -58,7 +58,7 @@ case 'afficherFichesSaisies':
     //enregistrement des visiteur/mois affichés par défaut dans le form de sélection
     $visiteurASelectionner = $_SESSION['visiteur'];
     $moisASelectionner = $_SESSION['mois'];
-    include 'vues/v_validationListeVisiteurs.php';
+    include 'vues/v_listeVisiteursMois.php';
     //message affiché par le formulaire de modification des frais forfaitisés
     $messageModif = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
     //infos fiche pour la vue résumé
@@ -95,7 +95,7 @@ case 'validationForfait':
     //enregistrement des visiteur/mois affichés par défaut dans le form de sélection
     $visiteurASelectionner = $_SESSION['visiteur'];
     $moisASelectionner = $_SESSION['mois'];
-    include 'vues/v_validationListeVisiteurs.php';
+    include 'vues/v_listeVisiteursMois.php';
     //variables destinées à la vue v_validationFichesResume.php
     $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais(
         $visiteurASelectionner, $moisASelectionner
@@ -142,7 +142,7 @@ case 'validationHorsForfait' :
     //enregistrement des visiteur/mois affichés par défaut dans le form de sélection
     $visiteurASelectionner = $_SESSION['visiteur'];
     $moisASelectionner = $_SESSION['mois'];
-    include 'vues/v_validationListeVisiteurs.php';
+    include 'vues/v_listeVisiteursMois.php';
     //variables résumé
     $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais(
         $visiteurASelectionner, $moisASelectionner
@@ -190,7 +190,7 @@ case 'validationFiche':
     //enregistrement des visiteur/mois affichés par défaut dans le form de sélection
     $visiteurASelectionner = $_SESSION['visiteur'];
     $moisASelectionner = $_SESSION['mois'];
-    include 'vues/v_validationListeVisiteurs.php';
+    include 'vues/v_listeVisiteursMois.php';
         //variables à afficher dans le formulaire frais forfaitisés
         $messageModif = '';
         $lesFraisForfait = $pdo->getLesFraisForfait(

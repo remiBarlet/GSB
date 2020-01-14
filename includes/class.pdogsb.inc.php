@@ -288,9 +288,10 @@ class PdoGsb
     }
 
     /**
-     * Met à jour le libellé des frais hors forfait refusés 
+     * Met à jour le libellé des frais hors forfait refusés ou reportés
      * 
-     * @param String $idFraisRefus ID de la ligne de frais hors forfait à refuser
+     * @param String $nvLibelle Libelle à ajouter en début de libelle du frais reporté/refusé
+     * @param String $idFraisRefus ID de la ligne de frais hors forfait à refuser/reporter
      * 
      * @return null
      */
@@ -599,6 +600,39 @@ class PdoGsb
     }
 
     /**
+     * Retourne les mois pour lesquels existent des fiches à mettre en paiement
+     * 
+     * @param String $idVisiteur le visiteur pour lequel existe cette fiche
+     *
+     * @return un tableau associatif de clé un mois -aaaamm- et de valeurs
+     *         l'année et le mois correspondant
+     */
+    public function getLesMoisAPayer($idVisiteur)
+    {
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+            'SELECT fichefrais.mois AS mois FROM fichefrais '
+            . 'WHERE fichefrais.idetat IN ("VA", "MP", "RB") '
+            . 'AND fichefrais.idvisiteur = :unVisiteur '
+            . 'GROUP BY fichefrais.mois '
+            . 'ORDER BY fichefrais.mois desc '
+        );
+        $requetePrepare->bindParam(':unVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $lesMois = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $mois = $laLigne['mois'];
+            $numAnnee = substr($mois, 0, 4);
+            $numMois = substr($mois, 4, 2);
+            $lesMois[] = array(
+                'mois' => $mois,
+                'numAnnee' => $numAnnee,
+                'numMois' => $numMois
+            );
+        }
+        return $lesMois;
+    }
+
+    /**
      * Retourne un tableau des montants des frais forfaitisés
      * 
      * @return Array $montantsForfait Montants du forfait
@@ -633,7 +667,7 @@ class PdoGsb
         $requetePrepare->bindParam(':unEtat', $etat, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMontant', $montant, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMontant', floatval($montant), PDO::PARAM_STR);
         $requetePrepare->execute();
     }
 }

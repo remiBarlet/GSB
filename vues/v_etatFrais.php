@@ -14,17 +14,41 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 ?>
-<hr>
-<div class="panel panel-primary">
-    <div class="panel-heading">Fiche de frais du mois 
-        <?php echo $numMois . '-' . $numAnnee ?> : </div>
+<hr> 
+<?php 
+if ($_SESSION['comptable']) {
+    ?>
+    <div class="panel panel-comptable">
+    <?php
+} else {
+    ?>
+    <div class="panel panel-primary">
+    <?php
+}
+?>
+    <div class="panel-heading">Fiche de frais du mois de
+        <?php setlocale(LC_TIME, "fr_FR.UTF8");
+        echo ' ' . strftime(
+            "%B", 
+            strtotime($numMois.'/01/'.$numAnnee)
+        ) . ' ' . $numAnnee?> : </div>
     <div class="panel-body">
         <strong><u>Etat :</u></strong> <?php echo $libEtat ?>
         depuis le <?php echo $dateModif ?> <br> 
         <strong><u>Montant validé :</u></strong> <?php echo $montantValide ?>
     </div>
 </div>
-<div class="panel panel-info">
+<?php 
+if ($_SESSION['comptable']) {
+    ?>
+    <div class="panel panel-comptable">
+    <?php
+} else {
+    ?>
+    <div class="panel panel-info">
+    <?php
+}
+?>
     <div class="panel-heading">Eléments forfaitisés</div>
     <table class="table table-bordered table-responsive">
         <tr>
@@ -47,7 +71,17 @@
         </tr>
     </table>
 </div>
-<div class="panel panel-info">
+<?php 
+if ($_SESSION['comptable']) {
+    ?>
+    <div class="panel panel-comptable">
+    <?php
+} else {
+    ?>
+    <div class="panel panel-info">
+    <?php
+}
+?>
     <div class="panel-heading">Descriptif des éléments hors forfait - 
         <?php echo $nbJustificatifs ?> justificatifs reçus</div>
     <table class="table table-bordered table-responsive">

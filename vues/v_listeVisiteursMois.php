@@ -13,13 +13,14 @@
  */
 ?>
 
-<h2>Fiches de frais à valider</h2>
+<h2>Fiches de frais à valider</h2>    
 <div class="row">
     <h3>Sélectionner un visiteur médical : </h3>
 </div>    
 <div class="row">
     <form action="index.php?uc=validerFrais&action=afficherFichesSaisies"
-              method="post" role="form">
+              method="post" role="form">   
+
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
                 <div class="col-md-6">
@@ -75,8 +76,6 @@
         </div>
         <div class="col-md-10 col-md-offset-1 p-t-1">    
             <input id="ok" type="submit" value="Valider" class="btn btn-success" 
-                role="button">
-            <input id="annuler" type="reset" value="Effacer" class="btn btn-danger" 
                 role="button">
         </div>        
     </form>
