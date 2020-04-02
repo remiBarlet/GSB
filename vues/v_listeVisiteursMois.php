@@ -13,14 +13,29 @@
  */
 ?>
 
-<h2>Fiches de frais à valider</h2>    
+<?php if ($uc == 'validerFrais') {
+    ?>
+    <h2>Fiches de frais à valider</h2>    
+    <?php
+}
+?>
+
 <div class="row">
     <h3>Sélectionner un visiteur médical : </h3>
 </div>    
 <div class="row">
+<?php if ($uc == 'validerFrais') {
+    ?>
     <form action="index.php?uc=validerFrais&action=afficherFichesSaisies"
-              method="post" role="form">   
-
+          method="post" role="form">   
+    <?php
+} else if ($uc == 'ajouterJustificatifs') {
+    ?>
+    <form action="index.php?uc=ajouterJustificatifs&action=nombreJustificatifs"
+          method="post" role="form">   
+    <?php
+}
+?>
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
                 <div class="col-md-6">
@@ -75,7 +90,7 @@
             </div>
         </div>
         <div class="col-md-10 col-md-offset-1 p-t-1">    
-            <input id="ok" type="submit" value="Valider" class="btn btn-success" 
+            <input id="ok" type="submit" value="Valider" class="btn btn-success pull-right" 
                 role="button">
         </div>        
     </form>

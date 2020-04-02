@@ -15,7 +15,7 @@
  */
 ?>
 <hr> 
-<?php 
+<?php
 if ($_SESSION['comptable']) {
     ?>
     <div class="panel panel-comptable">
@@ -33,9 +33,14 @@ if ($_SESSION['comptable']) {
             strtotime($numMois.'/01/'.$numAnnee)
         ) . ' ' . $numAnnee?> : </div>
     <div class="panel-body">
-        <strong><u>Etat :</u></strong> <?php echo $libEtat ?>
+        <strong><u>Etat:</u></strong> <?php echo $libEtat ?>
         depuis le <?php echo $dateModif ?> <br> 
-        <strong><u>Montant validé :</u></strong> <?php echo $montantValide ?>
+        <strong><u>Montant validé:</u></strong> <?php 
+        if ($montantValide != null) {
+            echo $montantValide;
+        } else {
+            echo 'la fiche n\'a pas encore été validée';
+        } ?>
     </div>
 </div>
 <?php 
@@ -83,7 +88,20 @@ if ($_SESSION['comptable']) {
 }
 ?>
     <div class="panel-heading">Descriptif des éléments hors forfait - 
-        <?php echo $nbJustificatifs ?> justificatifs reçus</div>
+        <?php if ($nbJustificatifs == null) {
+            echo 0; 
+        } else {
+            echo $nbJustificatifs;
+        }
+        if ($nbJustificatifs < 2) {
+            ?> justificatif reçu
+            <?php 
+        } else {
+            ?> justificatifs reçus
+            <?php
+        }
+        ?>
+    </div>
     <table class="table table-bordered table-responsive">
         <tr>
             <th class="date">Date</th>

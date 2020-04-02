@@ -40,9 +40,8 @@ case 'saisirVisiteurMois':
     $lesClesMois = array_keys($lesMois);
     $moisASelectionner = $lesClesMois[0];
     include 'vues/v_listeVisiteursMois.php';
+    include 'vues/v_pied.php';    
     break;
-
-
 
 case 'afficherFichesSaisies':
     //effet de la validation du formulaire de choix du visiteur/mois
@@ -83,10 +82,9 @@ case 'afficherFichesSaisies':
     include 'vues/v_validationFichesResume.php';
     include 'vues/v_validationFraisForfait.php';
     include 'vues/v_validationFraisHorsForfait.php';
-    include 'vues/v_validationFiche.php';    
+    include 'vues/v_validationFiche.php';     
+    include 'vues/v_pied.php';    
     break;  
-
-
 
 case 'validationForfait':
     //enregistrement des listes des visiteurs et des mois à valider
@@ -133,6 +131,7 @@ case 'validationForfait':
     include 'vues/v_validationFraisForfait.php';
     include 'vues/v_validationFraisHorsForfait.php';
     include 'vues/v_validationFiche.php';    
+    include 'vues/v_pied.php';
     break;  
 
 case 'validationHorsForfait' :
@@ -182,7 +181,9 @@ case 'validationHorsForfait' :
     include 'vues/v_validationFraisForfait.php';
     include 'vues/v_validationFraisHorsForfait.php';
     include 'vues/v_validationFiche.php';
+    include 'vues/v_pied.php';
     break;
+    
 case 'validationFiche':
     //enregistrement des listes des visiteurs et des mois à valider
     $lesVisiteurs = $pdo->getListeVisiteurs();
@@ -230,6 +231,7 @@ case 'validationFiche':
     include 'vues/v_validationFraisForfait.php';
     include 'vues/v_validationFraisHorsForfait.php';
     include 'vues/v_validationFiche.php';
+    include 'vues/v_pied.php';    
     break;
 }
 ?>

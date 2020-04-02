@@ -15,6 +15,8 @@
  */
 ?>
         </div>
+        <hr>
+        <hr>
     </body>
 </html>
 

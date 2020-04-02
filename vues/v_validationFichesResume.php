@@ -41,7 +41,13 @@
     <div class="panel-body">
         <strong><u>Etat :</u></strong> <?php echo $libEtat ?>
         depuis le <?php echo $dateModif ?> <br> 
-        <strong><u>Montant validé :</u></strong> <?php echo $montantValide ?>
+        <strong><u>Montant validé :</u></strong> <?php        
+        if ($montantValide != null) {
+            echo $montantValide;
+        } else {
+            echo 'la fiche n\'a pas encore été validée';
+        } 
+        ?>
     </div>
 </div>
     <?php 

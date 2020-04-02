@@ -28,7 +28,9 @@ case 'saisirVisiteurMois':
         $visiteurASelectionner = $leVisiteur;
     }
     include 'vues/v_listeVisiteurs.php';
+    include 'vues/v_pied.php';
     break;
+
 case 'choisirFiche':
     $_SESSION['visiteur'] 
         = filter_input(INPUT_POST, 'lstVisiteurs', FILTER_SANITIZE_STRING);
@@ -39,7 +41,9 @@ case 'choisirFiche':
     $lesMois = $pdo->getLesMoisAPayer($_SESSION['visiteur']);
     include 'vues/v_listeVisiteurs.php';
     include 'vues/v_listeFichesAPayer.php';
+    include 'vues/v_pied.php';
     break;
+
 case 'afficherFicheValidee':
     $visiteurASelectionner = $_SESSION['visiteur'];
     $lesVisiteurs = $pdo->getListeVisiteurs();
@@ -66,7 +70,9 @@ case 'afficherFicheValidee':
     $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
     include 'vues/v_etatFrais.php';
     include 'vues/v_suiviPaiement.php';
+    include 'vues/v_pied.php';
     break;
+
 case 'payeeOuRemboursee':
     //action du formulaire précédent: changement d'état de la fiche
     //la date est mise à jour
@@ -108,5 +114,6 @@ case 'payeeOuRemboursee':
     $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
     include 'vues/v_etatFrais.php';
     include 'vues/v_suiviPaiement.php';
+    include 'vues/v_pied.php';
     break;
 }

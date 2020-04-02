@@ -14,10 +14,13 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-$moisDebut = '201609';
+$moisDebut = '201909';
 require './fonctions.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=gsb_frais', 'root', '');
+$pdo = new PDO(
+    'mysql:host=localhost; dbname=gsb_frais', 
+    'userGsb', 'L2100fm$'
+);
 $pdo->query('SET CHARACTER SET utf8');
 
 set_time_limit(0);

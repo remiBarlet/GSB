@@ -17,8 +17,16 @@
     ?>
 <div class="panel panel-comptable">
     <div class="panel-heading">Descriptif des éléments hors forfait - 
-        <?php echo $nbJustificatifs ?> justificatifs reçus</div>
-
+        <?php echo $nbJustificatifs;
+        if ($nbJustificatifs < 2) {
+            ?> justificatif reçu
+            <?php 
+        } else {
+            ?> justificatifs reçus
+            <?php
+        }
+        ?>
+        </div>
         <form action="index.php?uc=validerFrais&action=validationHorsForfait"
                 method='post' role='form'>
                 <fieldset class="p-t-1 p-b-1 p-l-1 p-r-1">

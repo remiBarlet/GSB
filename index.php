@@ -42,6 +42,9 @@ case 'gererFrais':
 case 'etatFrais':
     include 'controleurs/c_etatFrais.php';
     break;
+case 'ajouterJustificatifs':
+    include 'controleurs/c_justificatifs.php';
+    break;
 case 'validerFrais': 
     include 'controleurs/c_validerFrais.php';
     break;

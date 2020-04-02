@@ -123,7 +123,7 @@ class PdoGsb
     }
 
     /**
-     * @return id, nom, prenom de la table VISITEUR sous la forme d'un tableau associatif
+     * @return tableau id, nom, prenom de la table VISITEUR sous la forme d'un tableau associatif
      */
     public function getListeVisiteurs()
     {
@@ -290,7 +290,7 @@ class PdoGsb
     /**
      * Met à jour le libellé des frais hors forfait refusés ou reportés
      * 
-     * @param String $nvLibelle Libelle à ajouter en début de libelle du frais reporté/refusé
+     * @param String $nvLibelle    Libelle à ajouter en début de libelle du frais reporté/refusé
      * @param String $idFraisRefus ID de la ligne de frais hors forfait à refuser/reporter
      * 
      * @return null
@@ -408,7 +408,7 @@ class PdoGsb
         $dernierMois = $this->dernierMoisSaisi($idVisiteur);
         $laDerniereFiche = $this->getLesInfosFicheFrais($idVisiteur, $dernierMois);
         if ($laDerniereFiche['idEtat'] == 'CR') {
-            $this->majEtatFicheFrais($idVisiteur, $dernierMois, 'CL');
+            $this->majEtatFicheFrais($idVisiteur, $dernierMois, 'CL', 0);
         }
         $requetePrepare = PdoGsb::$monPdo->prepare(
             'INSERT INTO fichefrais (idvisiteur,mois,nbjustificatifs,'
