@@ -2,71 +2,137 @@
     margin-top: 10px;
 }
 
+.navbar-comptable {
+  background-color:  #44475a !important;
+}
+
+.navbar-visiteur {
+  background-color: #286090 !important;
+}
+
+
+.navbar-nav {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+.navbar-collapse {
+  border-top: 0px;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-default .navbar-nav > .active > a {
+  color: white;
+  background-color: #2f2c3a;  
+}
+
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > li > a:hover {
+  color: black; 
+  background-color: #abb2b9;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: transparent;
+}
+
+.navbar-nav > li:active {
+  background-color: #2f2c3a;  
+}
+
 .panel-comptable {
-    border-color: #44475a;
-  }
-  .panel-comptable > .panel-heading {
-    color: white;
+  border-color: #44475a;
+}
+
+.panel-comptable > .panel-heading {
+  color: white;
+  background-color: #44475a;
+  border-color: #44475a;
+}
+
+.panel-comptable > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #44475a;
+}
+
+.panel-comptable > .panel-heading .badge {
+  color: white;
+  background-color: #44475a;
+}
+
+.panel-comptable > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #44475a;
+}
+
+.comptable a {
+  color: #44475a;
+}
+
+.comptable a:hover, a:focus {
+    color: #2f2c3a;
+}
+
+.comptable li > a:hover {
+    background-color: #e4e2ee;
+}
+
+.comptable li.active > a {
     background-color: #44475a;
-    border-color: #44475a;
-  }
-  .panel-comptable > .panel-heading + .panel-collapse > .panel-body {
-    border-top-color: #44475a;
-  }
-  .panel-comptable > .panel-heading .badge {
-    color: white;
-    background-color: #44475a;
-  }
-  .panel-comptable > .panel-footer + .panel-collapse > .panel-body {
-    border-bottom-color: #44475a;
-  }
+}
 
-  .comptable a {
-    color: #44475a;
-  }
+.comptable li.active > a:hover {
+    background-color: #2f2c3a;
+}
 
-  .comptable a:hover, a:focus {
-      color: #2f2c3a;
-  }
+/*Colonne refuser*/
+.refus {
+  width: 10%;
+}
 
-  .comptable li > a:hover {
-      background-color: #e4e2ee;
-  }
+/*Padding and margin*/
+.p-t-1 {
+  padding-top: 1em;
+}
+.p-b-1 {
+  padding-bottom : 1em;
+}
+.p-l-1 {
+  padding-left: 1em;
+}
+.p-r-1 {
+  padding-right: 1em;
+}
+.p-r-2 {
+  padding-right: 2em;
+}
 
-  .comptable li.active > a {
-      background-color: #44475a;
-  }
+hr {
+  border-top-color: transparent;
+}
 
-  .comptable li.active > a:hover {
-      background-color: #2f2c3a;
-  }
+.full-width {
+  width: 100%;
+}
 
-  /*Colonne refuser*/
-  .refus {
-    width: 10%;
-  }
+.m-b-1 {
+  margin-bottom: 1em;
+}
 
-  /*Padding and margin*/
-  .p-t-1 {
-    padding-top: 1em;
-  }
-
-  .p-b-1 {
-    padding-bottom : 1em;
-  }
-
-  .p-l-1 {
-    padding-left: 1em;
-  }
-
-  .p-r-1 {
-    padding-right: 1em;
-  }
-
-  .p-r-2 {
-    padding-right: 2em;
-  }
-
-  /*hr {
-    border-top-color: transparent;
-  }*/
+#margeMenuResponsive {
+  height: 55px;
+}

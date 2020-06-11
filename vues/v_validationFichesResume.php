@@ -31,7 +31,7 @@
             <div class='panel-heading'>Fiche validée :
         <?php 
     }
-        setlocale(LC_TIME, "fr_FR.UTF8");
+        setlocale(LC_TIME, "fr_FR.UTF-8");
         echo ' ' . strftime(
             "%B", 
             strtotime($numMois.'/01/'.$numAnnee)
@@ -43,7 +43,7 @@
         depuis le <?php echo $dateModif ?> <br> 
         <strong><u>Montant validé :</u></strong> <?php        
         if ($montantValide != null) {
-            echo $montantValide;
+            echo $montantValide . ' €';
         } else {
             echo 'la fiche n\'a pas encore été validée';
         } 

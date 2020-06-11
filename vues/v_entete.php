@@ -31,13 +31,133 @@
             <?php
             $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
             if ($estConnecte) {
+                ?>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <?php
                 if ($_SESSION['comptable']) {
                     ?>
-                    <div class="header comptable">
+                <nav class="navbar navbar-default navbar-comptable navbar-fixed-top hidden-md hidden-lg">
+                    <?php
+                } else {
+                    ?>
+                <nav class="navbar navbar-default navbar-visiteur navbar-fixed-top hidden-md hidden-lg">
+                    <?php
+                }
+                ?>
+                    <div class="container">
+                        <?php
+                        if ($_SESSION['comptable']) {
+                            ?>
+                        <div class="navbar-header navbar-comptable">
+                            <?php 
+                        } else {
+                            ?>
+                        <div class="navbar-header navbar-visiteur">
+                            <?php
+                        }
+                        ?>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                Galaxy Swiss-Bourdin
+                                </a>
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <?php
+                        if ($_SESSION['comptable']) {
+                            ?>
+                            <ul class="nav navbar-nav navbar-comptable">
+                                <li <?php if (!$uc || $uc == 'accueil') { 
+                                ?>class="active"<?php 
+                                }?>>
+                                    <a 
+                href="index.php">
+                                    Accueil
+                                    </a>
+                                </li>
+                                <li <?php if ($uc == 'ajouterJustificatifs') {
+                                ?>class="active"<?php
+                                }?>>
+                                    <a
+                href="index.php?uc=ajouterJustificatifs&action=saisirVisiteurMois">
+                                    Ajouter des justificatifs
+                                    </a>
+                                </li>
+                                <li <?php if ($uc == 'validerFrais') {
+                                ?>class="active"<?php 
+                                }?>>
+                                    <a 
+                href="index.php?uc=validerFrais&action=saisirVisiteurMois">
+                                    Valider les fiches de frais
+                                    </a>
+                                </li>
+                                <li <?php if ($uc =='suivrePaiement') {
+                                ?>class="active"<?php 
+                                }?>>
+                                    <a 
+                href="index.php?uc=suivrePaiement&action=saisirVisiteurMois">
+                                    Suivre les paiements
+                                    </a>
+                                </li>  
+                            <?php 
+                        } else {
+                            ?>
+                            <ul class="nav navbar-nav navbar-visiteur">
+                                <li <?php if (!$uc || $uc == 'accueil') { 
+                                ?>class="active"<?php 
+                                }?>>
+                                    <a 
+                href="index.php">
+                                    Accueil
+                                    </a>
+                                </li>
+                                <li <?php if ($uc == 'gererFrais') {
+                                ?>class="active"<?php 
+                                }?>>
+                                    <a 
+                href="index.php?uc=gererFrais&action=saisirFrais">
+                                    Renseigner la fiche de frais
+                                    </a>
+                                </li>
+                                <li <?php if ($uc == 'etatFrais') { 
+                                ?>class="active"<?php 
+                                }?>>
+                                    <a 
+                href="index.php?uc=etatFrais&action=selectionnerMois">
+                                    Afficher mes fiches de frais
+                                    </a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                                <li <?php if ($uc == 'deconnexion') { 
+                                ?>class="active"<?php 
+                                }?>>
+                                    <a 
+                href="index.php?uc=deconnexion&action=demandeDeconnexion">
+                                    Déconnexion
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </nav>
+
+                <div id="margeMenuResponsive" class="hidden-md hidden-lg"></div>
+                
+                <?php
+                if ($_SESSION['comptable']) {
+                    ?>
+                    <div class="header comptable hidden-xs hidden-sm">
                         <?php
                 } else {
                     ?>
-                    <div class="header">
+                    <div class="header hidden-xs hidden-sm">
                         <?php
                 }
                 ?>
@@ -71,6 +191,7 @@
                                     class="glyphicon glyphicon-pencil"></span>
                                     Ajouter des justificatifs
                                 </a>
+                            </li>
                             <li <?php if ($uc == 'validerFrais') {
                                 ?>class="active"<?php 
                                 }?>>

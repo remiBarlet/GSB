@@ -17,18 +17,18 @@
 <div class='row'>
     <form action="index.php?uc=ajouterJustificatifs&action=infosFiche"
         method='post' role='form'>
-        <div class="col-md-4">
+        <div class="col-md-3 col-md-offset-1">
             <label for='nbJustificatifs' class='p-t-1'>
-                Nombre de justificatifs reçus
+                Nombre de justificatifs reçus :
             </label>
         </div>
         <div class="col-md-6">
             <input type='number' id='nbJustificatifs' name='nbJustificatifs' min='0'
                                value="<?php echo $nbJustificatifs?>" 
-                               class="form-control pull-right float-right">
+                               class="form-control pull-right float-right m-b-1">
         </div>
-        <div class="col-md-2">
-            <button class="btn btn-success" type="submit">Ajouter</button>
+        <div class="col-md-1">
+            <button class="btn btn-success pull-right" type="submit">Ajouter</button>
         </div>
     </form>
 </div>

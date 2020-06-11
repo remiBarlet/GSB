@@ -27,7 +27,7 @@ if ($_SESSION['comptable']) {
 }
 ?>
     <div class="panel-heading">Fiche de frais du mois de
-        <?php setlocale(LC_TIME, "fr_FR.UTF8");
+        <?php setlocale(LC_TIME, "fr_FR.UTF-8");
         echo ' ' . strftime(
             "%B", 
             strtotime($numMois.'/01/'.$numAnnee)
@@ -37,7 +37,7 @@ if ($_SESSION['comptable']) {
         depuis le <?php echo $dateModif ?> <br> 
         <strong><u>Montant validé:</u></strong> <?php 
         if ($montantValide != null) {
-            echo $montantValide;
+            echo $montantValide . ' €';
         } else {
             echo 'la fiche n\'a pas encore été validée';
         } ?>

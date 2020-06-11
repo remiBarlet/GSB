@@ -16,7 +16,7 @@
 <h2>Suivi de paiement</h2>    
 <div class="row">
     <div class="col-md-4">
-        <h3>Sélectionner un visiteur médical : </h3>
+        <h3>Sélectionner un visiteur médical: </h3>
     </div>
     <form action="index.php?uc=suivrePaiement&action=choisirFiche"
               method="post" role="form">   

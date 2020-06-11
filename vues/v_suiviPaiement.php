@@ -17,6 +17,7 @@
 <form method='post'
     action='index.php?uc=suivrePaiement&action=payeeOuRemboursee'
     role='form'>
+    <fieldset class="p-t-1 p-l-1 p-r-1 p-b-1">
     <?php
     if ($libEtat == 'Validée') {
         ?>
@@ -32,4 +33,5 @@
         <?php
     }
     ?>
+    </fieldset>
 </form>

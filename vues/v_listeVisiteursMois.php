@@ -21,7 +21,9 @@
 ?>
 
 <div class="row">
-    <h3>Sélectionner un visiteur médical : </h3>
+    <div class="col-sm-12">
+        <h3>Sélectionner un visiteur médical: </h3>
+    </div>
 </div>    
 <div class="row">
 <?php if ($uc == 'validerFrais') {

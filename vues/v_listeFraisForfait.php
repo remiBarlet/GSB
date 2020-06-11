@@ -15,10 +15,14 @@
  */
 ?>
 <div class="row">    
+    <div class="col-sm-12">
     <h2>Renseigner ma fiche de frais du mois 
         <?php echo $numMois . '-' . $numAnnee ?>
     </h2>
+    </div>
+    <div class="col-sm-12">
     <h3>Eléments forfaitisés</h3>
+    </div>
     <div class="col-md-4">
         <form method="post" 
               action="index.php?uc=gererFrais&action=validerMajFraisForfait" 

@@ -17,7 +17,11 @@
 if ($lesMois == null) {
     ?> 
 <hr>
-<h3>Aucune fiche n'est validée pour ce visiteur</h3>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Aucune fiche n'est validée pour ce visiteur</h3>
+    </div>
+</div>
     <?php
 } else {
     ?>
